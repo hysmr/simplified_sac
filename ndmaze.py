@@ -30,7 +30,7 @@ class NDMaze:
         self.action_space = Box(-np.ones(ndim, dtype=np.float32), np.ones(ndim, dtype=np.float32))
         self.observation = np.zeros(2 * ndim, dtype=np.float32)
 
-    def reset(self) -> np.ndarray:
+    def reset(self):
         self.num_steps = 0
         while True:
             self.observation = self.observation_space.sample()
@@ -62,21 +62,21 @@ class NDMaze:
         return action
 
     @property
-    def distance(self) -> float:
+    def distance(self):
         return np.linalg.norm(self.position, ord=2)
 
     @property
-    def position(self) -> np.ndarray:
+    def position(self):
         return self.observation[:self.ndim]
 
     @position.setter
-    def position(self, value: ArrayLike):
+    def position(self, value):
         self.observation[:self.ndim] = value
 
     @property
-    def velocity(self) -> np.ndarray:
+    def velocity(self):
         return self.observation[self.ndim:]
 
     @velocity.setter
-    def velocity(self, value: ArrayLike):
+    def velocity(self, value):
         self.observation[self.ndim:] = value
